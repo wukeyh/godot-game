@@ -10,12 +10,6 @@
 Godot_v4.7.2-stable_win64_console.exe --headless --path H:\godot-projects\y-game --export-release Web H:\godot-projects\y-game\build\web\index.html
 ```
 
-用静态服务器打开 `build/web`，不要直接双击 `index.html`。例如：
+调试时双击工程根目录的 `open-web.bat`。它会在 `127.0.0.1:8060` 打开已经导出的 `build/web`，并启动浏览器。不要直接双击 `index.html`。关掉这个窗口或按 Ctrl+C 即停止服务。
 
-```text
-python -m http.server 8060 --bind 127.0.0.1
-```
-
-然后访问 `http://127.0.0.1:8060/`。页面会铺满电脑窗口和手机浏览器窗口。
-
-Windows 上的 `python -m http.server` 可能把 `.js` 标成错误的 MIME 类型，浏览器会拒绝加载音频 worklet。游戏画面仍然能启动。要听声音时，换一个会把 `.js` 标成 `application/javascript` 的静态服务器。
+页面会铺满电脑窗口和手机浏览器窗口。
