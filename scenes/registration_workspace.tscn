@@ -1,0 +1,608 @@
+[gd_scene format=3 uid="uid://ckx25rhf38r23"]
+
+[ext_resource type="Texture2D" uid="uid://ccn6pgmbppip" path="res://assets/场景图片素材/1-Seedream 底图.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://bfbsu520j1hdt" path="res://assets/场景图片素材/2-左侧堆叠书籍.png" id="2_books"]
+[ext_resource type="Texture2D" uid="uid://bj80xna4hndgx" path="res://assets/场景图片素材/3-带台灯的工业设备箱.png" id="3_box"]
+[ext_resource type="Texture2D" uid="uid://bqdbfnosnx2x1" path="res://assets/场景图片素材/4-笔筒与笔组.png" id="4_pens"]
+[ext_resource type="Texture2D" uid="uid://dmxl1svs7vccc" path="res://assets/场景图片素材/5-黑色水瓶.png" id="5_bottle"]
+[ext_resource type="Texture2D" uid="uid://bd4nklvaldoph" path="res://assets/场景图片素材/6-小型黑色工业设备.png" id="6_device"]
+[ext_resource type="Texture2D" uid="uid://dx7u8m2k2m4y3" path="res://assets/场景图片素材/7-带剪刀的笔筒.png" id="7_tools"]
+[ext_resource type="Texture2D" uid="uid://4ortgvkjktlg" path="res://assets/场景图片素材/8-右侧堆叠电子设备组.png" id="8_electronics"]
+[ext_resource type="Texture2D" uid="uid://cxefnneyx332l" path="res://assets/场景图片素材/9-桌面零散电子小物件组.png" id="9_small"]
+[ext_resource type="Texture2D" uid="uid://bwe62p0nqpngb" path="res://assets/场景图片素材/10-金属保温杯.png" id="10_thermos"]
+[ext_resource type="Texture2D" uid="uid://e1tu5ra3jyhk" path="res://assets/场景图片素材/11-白色咖啡杯.png" id="11_cup"]
+[ext_resource type="Texture2D" uid="uid://d2ttvjm6adqag" path="res://assets/场景图片素材/12-NEXUS-7数字时钟.png" id="12_clock"]
+[ext_resource type="Texture2D" uid="uid://dvukpag45nwpe" path="res://assets/场景图片素材/13-展开的城市地图册.png" id="13_map"]
+[ext_resource type="Texture2D" uid="uid://dqulkb8il5htf" path="res://assets/场景图片素材/14-四格监控拼接屏.png" id="14_monitor"]
+[ext_resource type="Texture2D" uid="uid://kgtk1wqdd1cv" path="res://assets/场景图片素材/15-金属桶盆栽.png" id="15_plant"]
+[ext_resource type="Texture2D" uid="uid://jtgvwoqn3a23" path="res://assets/场景图片素材/16-右下角堆叠书籍电子设备组.png" id="16_corner"]
+[ext_resource type="Script" uid="uid://ddfrh378oegof" path="res://scripts/hover_texture.gd" id="17_hover"]
+
+[sub_resource type="Shader" id="Shader_15jlx"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03leg"]
+shader = SubResource("Shader_15jlx")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_s0s2b"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okdfg"]
+shader = SubResource("Shader_s0s2b")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_0fqgp"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ca2se"]
+shader = SubResource("Shader_0fqgp")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_ratip"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8tkgi"]
+shader = SubResource("Shader_ratip")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_p86xq"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ba7iv"]
+shader = SubResource("Shader_p86xq")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_yfwh4"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qiwxx"]
+shader = SubResource("Shader_yfwh4")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_fbypb"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qtfk"]
+shader = SubResource("Shader_fbypb")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_2advm"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5pq0"]
+shader = SubResource("Shader_2advm")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_oxcp7"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqt0g"]
+shader = SubResource("Shader_oxcp7")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_rcwk0"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gygr1"]
+shader = SubResource("Shader_rcwk0")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_sdmno"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xf2i8"]
+shader = SubResource("Shader_sdmno")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_kibe5"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q8d51"]
+shader = SubResource("Shader_kibe5")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_7i0hl"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klckt"]
+shader = SubResource("Shader_7i0hl")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_vbyps"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xju0d"]
+shader = SubResource("Shader_vbyps")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[sub_resource type="Shader" id="Shader_b78ao"]
+code = "
+shader_type canvas_item;
+uniform vec4 outline_color : source_color = vec4(0.45, 0.95, 0.9, 1.0);
+uniform float outline_strength = 0.0;
+void fragment() {
+    vec4 base = texture(TEXTURE, UV);
+    vec2 p = TEXTURE_PIXEL_SIZE * 2.0;
+    float around = 0.0;
+    around = max(around, texture(TEXTURE, UV + vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(p.x, 0.0)).a);
+    around = max(around, texture(TEXTURE, UV + vec2(0.0, p.y)).a);
+    around = max(around, texture(TEXTURE, UV - vec2(0.0, p.y)).a);
+    float edge = step(0.02, around) * (1.0 - step(0.02, base.a));
+    COLOR = mix(base, outline_color, edge * outline_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_56fqt"]
+shader = SubResource("Shader_b78ao")
+shader_parameter/outline_color = Color(0.45, 0.95, 0.9, 1)
+shader_parameter/outline_strength = 0.0
+
+[node name="登记处工作台" type="Control" unique_id=1098280220]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="背景底图_可替换" type="Control" parent="." unique_id=895604239]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="底图" type="TextureRect" parent="背景底图_可替换" unique_id=573875147]
+layout_mode = 0
+offset_right = 1536.0
+offset_bottom = 1024.0
+mouse_filter = 2
+texture = ExtResource("1_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="桌面物件_拖动这些节点调整位置" type="Control" parent="." unique_id=572676801]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="左侧堆叠书籍" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=690818585]
+material = SubResource("ShaderMaterial_03leg")
+layout_mode = 0
+offset_top = 680.0
+offset_right = 270.66666
+offset_bottom = 854.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("2_books")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="工业设备箱与台灯" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=1103929217]
+material = SubResource("ShaderMaterial_okdfg")
+layout_mode = 0
+offset_top = 300.0
+offset_right = 270.0
+offset_bottom = 690.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("3_box")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="笔筒与笔组" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=909262841]
+material = SubResource("ShaderMaterial_ca2se")
+layout_mode = 0
+offset_left = 251.0
+offset_top = 586.0
+offset_right = 381.0
+offset_bottom = 816.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("4_pens")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="黑色水瓶" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=467347025]
+material = SubResource("ShaderMaterial_8tkgi")
+layout_mode = 0
+offset_left = 389.0
+offset_top = 637.0
+offset_right = 458.0
+offset_bottom = 821.0
+scale = Vector2(0.99098885, 1)
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("5_bottle")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="小型黑色工业设备" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=1031315279]
+material = SubResource("ShaderMaterial_ba7iv")
+layout_mode = 0
+offset_left = 459.0
+offset_top = 681.0
+offset_right = 629.65515
+offset_bottom = 782.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("6_device")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="带剪刀的笔筒" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=1806054653]
+material = SubResource("ShaderMaterial_qiwxx")
+layout_mode = 0
+offset_left = 645.0
+offset_top = 597.0
+offset_right = 734.0
+offset_bottom = 782.4166
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("7_tools")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="右侧堆叠电子设备组" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=1022428192]
+material = SubResource("ShaderMaterial_4qtfk")
+layout_mode = 0
+offset_left = 951.0
+offset_top = 714.0
+offset_right = 1133.9333
+offset_bottom = 812.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("8_electronics")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="桌面零散电子小物件组" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=1838871227]
+material = SubResource("ShaderMaterial_h5pq0")
+layout_mode = 0
+offset_left = 981.0
+offset_top = 827.0
+offset_right = 1258.5454
+offset_bottom = 969.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("9_small")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="金属保温杯" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=2133400333]
+material = SubResource("ShaderMaterial_iqt0g")
+layout_mode = 0
+offset_left = 234.0
+offset_top = 679.8
+offset_right = 358.0
+offset_bottom = 903.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("10_thermos")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="白色咖啡杯" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=772277598]
+material = SubResource("ShaderMaterial_gygr1")
+layout_mode = 0
+offset_left = 1017.0
+offset_top = 621.0
+offset_right = 1162.0
+offset_bottom = 826.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("11_cup")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="NEXUS-7数字时钟" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=716544417]
+material = SubResource("ShaderMaterial_xf2i8")
+layout_mode = 0
+offset_left = 1190.0
+offset_top = 690.0
+offset_right = 1480.0
+offset_bottom = 860.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("12_clock")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="展开的城市地图册" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=94305511]
+material = SubResource("ShaderMaterial_q8d51")
+layout_mode = 0
+offset_left = 313.0
+offset_top = 787.0
+offset_right = 950.2222
+offset_bottom = 972.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("13_map")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="监控拼接屏" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=1346496849]
+material = SubResource("ShaderMaterial_klckt")
+layout_mode = 0
+offset_left = 932.0
+offset_top = 3.0
+offset_right = 1533.0
+offset_bottom = 764.6633
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("14_monitor")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="金属桶盆栽" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=657239389]
+material = SubResource("ShaderMaterial_xju0d")
+layout_mode = 0
+offset_left = 1360.0
+offset_top = 560.0
+offset_right = 1536.0
+offset_bottom = 920.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("15_plant")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
+
+[node name="右下角书籍电子设备组" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=1141049994]
+material = SubResource("ShaderMaterial_56fqt")
+layout_mode = 0
+offset_left = 1212.9565
+offset_top = 813.0
+offset_right = 1554.0
+offset_bottom = 1025.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource("16_corner")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_hover")
