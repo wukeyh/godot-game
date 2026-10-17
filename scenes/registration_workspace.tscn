@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://kgtk1wqdd1cv" path="res://assets/场景图片素材/15-金属桶盆栽.png" id="15_plant"]
 [ext_resource type="Texture2D" uid="uid://jtgvwoqn3a23" path="res://assets/场景图片素材/16-右下角堆叠书籍电子设备组.png" id="16_corner"]
 [ext_resource type="Script" uid="uid://ddfrh378oegof" path="res://scripts/hover_texture.gd" id="17_hover"]
+[ext_resource type="Script" uid="uid://ck15gnwt4se3s" path="res://scripts/clock_display.gd" id="18_clock_display"]
 
 [sub_resource type="Shader" id="Shader_15jlx"]
 code = "
@@ -551,6 +552,22 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("17_hover")
 
+[node name="LiveClockDisplay" type="Label" parent="桌面物件_拖动这些节点调整位置" unique_id=1503965367]
+process_mode = 3
+layout_mode = 0
+offset_left = 1267.0
+offset_top = 742.99994
+offset_right = 1386.0
+offset_bottom = 784.99994
+rotation = 0.152481
+theme_override_colors/font_color = Color(0.1422753, 0.38384312, 0.61927265, 1)
+theme_override_font_sizes/font_size = 28
+text = "20:07:38"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("18_clock_display")
+font_size = 28
+clock_color = Color(0.1422753, 0.38384312, 0.61927265, 1)
 [node name="展开的城市地图册" type="TextureRect" parent="桌面物件_拖动这些节点调整位置" unique_id=94305511]
 material = SubResource("ShaderMaterial_q8d51")
 layout_mode = 0
